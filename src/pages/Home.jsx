@@ -1,53 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, Droplets, Wand2, Car, Star, ChevronRight } from 'lucide-react';
-import { heroSlides, services, whyUs, process, testimonials, ppfBrands, ceramicBrands, brand, beforeAfter, showcaseBoards } from '../data/mock';
+import { services, whyUs, process, testimonials, ppfBrands, ceramicBrands, brand, beforeAfter, showcaseBoards, heroSlides } from '../data/mock';
 import StatsRow from '../components/StatsRow';
 import BeforeAfter from '../components/BeforeAfter';
 import useReveal from '../hooks/useReveal';
+import heroCar from '../assets/poster-rangerover-1.jpeg';
 
 const iconMap = { ppf: ShieldCheck, ceramic: Droplets, graphene: Sparkles, borophene: Wand2, 'interior-detailing': Car };
 
+const hero = {
+  label: 'Paint Protection Film',
+  title: 'Armour For Your Ride.',
+  description: 'The only product that physically stops stone chips and scratches from ever reaching your paint. Self-healing. Invisible. Built to last a decade — even on the most premium marques.',
+  cta: 'Explore PPF',
+  link: '/services/ppf'
+};
+
 export default function Home() {
   const rootRef = useReveal();
-  const [slide, setSlide] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 6000);
-    return () => clearInterval(t);
-  }, []);
-
-  const s = heroSlides[slide];
 
   return (
     <div ref={rootRef} className="bg-black text-neutral-100">
-      {/* HERO */}
+      {/* HERO — static */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
-        {heroSlides.map((h, i) => (
-          <div key={h.id} className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}>
-            <img src={h.image} alt={h.label} className={`absolute inset-0 w-full h-full object-cover ${i === slide ? 'animate-slow-zoom' : 'scale-105'}`} />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50" />
-          </div>
-        ))}
+        <div className="absolute inset-0">
+          <img src={heroCar} alt="Range Rover getting Paint Protection Film applied" className="absolute inset-0 w-full h-full object-cover object-center animate-slow-zoom" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/60" />
+        </div>
         <div className="absolute inset-0 bg-grid opacity-30" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 items-center py-16">
-          <div key={s.id} className="animate-fade-up">
-            <div className="section-pill mb-6"><Sparkles className="w-3 h-3" /> {s.label}</div>
+          <div className="animate-fade-up">
+            <div className="section-pill mb-6"><Sparkles className="w-3 h-3" /> {hero.label}</div>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
-              <span className="silver-text">{s.title.split(' ').slice(0, -1).join(' ')} </span>
-              <span className="shine-text">{s.title.split(' ').slice(-1)}</span>
+              <span className="silver-text">{hero.title.split(' ').slice(0, -1).join(' ')} </span>
+              <span className="shine-text">{hero.title.split(' ').slice(-1)}</span>
             </h1>
-            <p className="mt-6 text-neutral-300 text-lg leading-relaxed max-w-xl">{s.description}</p>
+            <p className="mt-6 text-neutral-300 text-lg leading-relaxed max-w-xl">{hero.description}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link to="/contact" className="btn-gold px-7 py-3.5 rounded-full inline-flex items-center gap-2">Book Your Showroom Shine <ArrowRight className="w-4 h-4" /></Link>
-              <Link to={s.link} className="btn-ghost px-7 py-3.5 rounded-full inline-flex items-center gap-2">{s.cta} <ChevronRight className="w-4 h-4" /></Link>
-            </div>
-            <div className="mt-10 flex items-center gap-2">
-              {heroSlides.map((_, i) => (
-                <button key={i} onClick={() => setSlide(i)} className={`h-1.5 rounded-full transition-all ${i === slide ? 'w-10 bg-yellow-400' : 'w-4 bg-neutral-700'}`} />
-              ))}
+              <Link to={hero.link} className="btn-ghost px-7 py-3.5 rounded-full inline-flex items-center gap-2">{hero.cta} <ChevronRight className="w-4 h-4" /></Link>
             </div>
           </div>
 
