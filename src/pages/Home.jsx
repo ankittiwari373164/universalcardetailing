@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, Droplets, Wand2, Car, Star, ChevronRight } from 'lucide-react';
-import { services, whyUs, process, testimonials, ppfBrands, ceramicBrands, brand, beforeAfter, showcaseBoards, heroSlides } from '../data/mock';
+import { services, whyUs, process, testimonials, ppfBrands, ceramicBrands, brand, showcaseBoards, heroSlides } from '../data/mock';
 import StatsRow from '../components/StatsRow';
 import BeforeAfter from '../components/BeforeAfter';
 import useReveal from '../hooks/useReveal';
-import heroCar from '../assets/poster-rangerover-1.jpeg';
 
 const iconMap = { ppf: ShieldCheck, ceramic: Droplets, graphene: Sparkles, borophene: Wand2, 'interior-detailing': Car };
+
+// Clean, unobstructed online photography — premium car getting PPF applied, no text overlays.
+const heroCar = 'https://images.pexels.com/photos/36021355/pexels-photo-36021355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1600';
+
+// Real contrast pair for the before/after slider — dull, soap-covered arrival vs. glass-like, beaded finish.
+const beforeAfter = {
+  before: 'https://images.unsplash.com/photo-1633014041037-f5446fb4ce99?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzg5NTQ5MTE0fDA&ixlib=rb-4.1.0&q=85&w=1400',
+  after: 'https://images.pexels.com/photos/3892898/pexels-photo-3892898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1400'
+};
 
 const hero = {
   label: 'Paint Protection Film',
