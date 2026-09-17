@@ -5,18 +5,19 @@ import { services, whyUs, process, testimonials, ppfBrands, ceramicBrands, brand
 import StatsRow from '../components/StatsRow';
 import BeforeAfter from '../components/BeforeAfter';
 import useReveal from '../hooks/useReveal';
+import heroCar from '../assets/hero-rangerover.jpg';
 
 const iconMap = { ppf: ShieldCheck, ceramic: Droplets, graphene: Sparkles, borophene: Wand2, 'interior-detailing': Car };
 
-// Verified, real, working Pexels photo URLs (checked directly against pexels.com photo pages before use).
-// Hero — full white Range Rover, clean unobstructed shot: pexels.com/photo/white-land-rover-range-rover-suv-on-road-116675
-const heroCar = 'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1600';
+// Real studio photo of the Range Rover, mirrored so the car's visual weight sits on the
+// right (empty glass/rear on the left), keeping the left side clear for the headline.
 
-// Before/After — full car visible on both sides.
-// Before: pexels.com/photo/dirty-jeep-116509 | After: pexels.com/photo/black-range-rover-parked-on-gray-stone-pavement-14471686
+// Before/After — matched framing: both are white SUVs, both shot wide/parked, so the
+// slider reads as a clean transformation instead of two unrelated crops.
+// Before (dusty, parked, full car): pexels.com/photo/an-suv-on-a-muddy-ground-14841220
 const beforeAfter = {
-  before: 'https://images.pexels.com/photos/116509/pexels-photo-116509.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1400',
-  after: 'https://images.pexels.com/photos/14471686/pexels-photo-14471686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1400'
+  before: 'https://images.pexels.com/photos/14841220/pexels-photo-14841220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1600',
+  after: heroCar
 };
 
 const hero = {
@@ -32,11 +33,11 @@ export default function Home() {
 
   return (
     <div ref={rootRef} className="bg-black text-neutral-100">
-      {/* HERO — static, full car visible, text left-aligned, no logo overlay */}
+      {/* HERO — static, full car visible (mirrored real studio photo), text left-aligned, no logo overlay */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
         <div className="absolute inset-0">
-          <img src={heroCar} alt="Range Rover ready for Paint Protection Film at Universal Car Detailing Studio" className="absolute inset-0 w-full h-full object-cover object-center animate-slow-zoom" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/25" />
+          <img src={heroCar} alt="Range Rover receiving Paint Protection Film at Universal Car Detailing Studio" className="absolute inset-0 w-full h-full object-cover object-center animate-slow-zoom" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/50" />
         </div>
         <div className="absolute inset-0 bg-grid opacity-30" />
