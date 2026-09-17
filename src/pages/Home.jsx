@@ -5,16 +5,19 @@ import { services, whyUs, process, testimonials, ppfBrands, ceramicBrands, brand
 import StatsRow from '../components/StatsRow';
 import BeforeAfter from '../components/BeforeAfter';
 import useReveal from '../hooks/useReveal';
+import heroCar from '../assets/car-graphene-closeup.jpeg';
+import beforeCar from '../assets/car-studio-wide.jpeg';
+import afterCar from '../assets/car-front-studio.jpeg';
 
 const iconMap = { ppf: ShieldCheck, ceramic: Droplets, graphene: Sparkles, borophene: Wand2, 'interior-detailing': Car };
 
-// Clean, unobstructed online photography — premium car getting PPF applied, no text overlays.
-const heroCar = 'https://images.pexels.com/photos/36021355/pexels-photo-36021355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1600';
+// Real studio photography — full car, PPF clearly visible on the hood/mirror, no crop surprises.
+// (Using our own real photos here instead of stock URLs so the car is guaranteed to render fully and correctly.)
 
-// Real contrast pair for the before/after slider — dull, soap-covered arrival vs. glass-like, beaded finish.
+// Real before/after pair from our own bay — same studio, dull arrival vs. showroom handover finish, full car visible in both.
 const beforeAfter = {
-  before: 'https://images.unsplash.com/photo-1633014041037-f5446fb4ce99?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzg5NTQ5MTE0fDA&ixlib=rb-4.1.0&q=85&w=1400',
-  after: 'https://images.pexels.com/photos/3892898/pexels-photo-3892898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1400'
+  before: beforeCar,
+  after: afterCar
 };
 
 const hero = {
@@ -30,16 +33,16 @@ export default function Home() {
 
   return (
     <div ref={rootRef} className="bg-black text-neutral-100">
-      {/* HERO — static */}
+      {/* HERO — static, full car visible, no logo overlay */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
         <div className="absolute inset-0">
-          <img src={heroCar} alt="Range Rover getting Paint Protection Film applied" className="absolute inset-0 w-full h-full object-cover object-center animate-slow-zoom" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/60" />
+          <img src={heroCar} alt="Full car receiving Paint Protection Film at Universal Car Detailing Studio" className="absolute inset-0 w-full h-full object-cover object-center animate-slow-zoom" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/50" />
         </div>
         <div className="absolute inset-0 bg-grid opacity-30" />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 items-center py-16">
+        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 w-full py-16">
           <div className="animate-fade-up">
             <div className="section-pill mb-6"><Sparkles className="w-3 h-3" /> {hero.label}</div>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
@@ -51,11 +54,6 @@ export default function Home() {
               <Link to="/contact" className="btn-gold px-7 py-3.5 rounded-full inline-flex items-center gap-2">Book Your Showroom Shine <ArrowRight className="w-4 h-4" /></Link>
               <Link to={hero.link} className="btn-ghost px-7 py-3.5 rounded-full inline-flex items-center gap-2">{hero.cta} <ChevronRight className="w-4 h-4" /></Link>
             </div>
-          </div>
-
-          <div className="hidden lg:flex justify-center relative">
-            <div className="absolute inset-0 bg-radial-gold" />
-            <img src={brand.logo} alt="logo" className="relative w-[420px] animate-float drop-shadow-[0_0_40px_rgba(245,197,24,0.35)]" />
           </div>
         </div>
 
