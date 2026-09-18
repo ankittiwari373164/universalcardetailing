@@ -6,18 +6,19 @@ import StatsRow from '../components/StatsRow';
 import BeforeAfter from '../components/BeforeAfter';
 import useReveal from '../hooks/useReveal';
 import heroCar from '../assets/hero-rangerover.jpg';
+import beforeHalf from '../assets/before-half.jpg';
+import afterHalf from '../assets/after-half.jpg';
 
 const iconMap = { ppf: ShieldCheck, ceramic: Droplets, graphene: Sparkles, borophene: Wand2, 'interior-detailing': Car };
 
 // Real studio photo of the Range Rover, mirrored so the car's visual weight sits on the
 // right (empty glass/rear on the left), keeping the left side clear for the headline.
 
-// Before/After — matched framing: both are white SUVs, both shot wide/parked, so the
-// slider reads as a clean transformation instead of two unrelated crops.
-// Before (dusty, parked, full car): pexels.com/photo/an-suv-on-a-muddy-ground-14841220
+// Before/After — the SAME photo cut into left and right halves, so the car, angle and
+// lighting are pixel-identical; only the color/contrast treatment differs.
 const beforeAfter = {
-  before: 'https://images.pexels.com/photos/14841220/pexels-photo-14841220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=1600',
-  after: heroCar
+  before: beforeHalf,
+  after: afterHalf
 };
 
 const hero = {
@@ -33,17 +34,13 @@ export default function Home() {
 
   return (
     <div ref={rootRef} className="bg-black text-neutral-100">
-      {/* HERO — static, full car visible (mirrored real studio photo), text left-aligned, no logo overlay */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
-        <div className="absolute inset-0">
-          <img src={heroCar} alt="Range Rover receiving Paint Protection Film at Universal Car Detailing Studio" className="absolute inset-0 w-full h-full object-cover object-center animate-slow-zoom" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/50" />
-        </div>
-        <div className="absolute inset-0 bg-grid opacity-30" />
+      {/* HERO — static, full photo shown uncropped (object-contain), text left-aligned, no logo overlay */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
+        <div className="absolute inset-0 bg-grid opacity-20" />
+        <div className="absolute inset-0 bg-radial-gold opacity-40" />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full py-16">
-          <div className="max-w-2xl animate-fade-up">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div className="animate-fade-up">
             <div className="section-pill mb-6"><Sparkles className="w-3 h-3" /> {hero.label}</div>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
               <span className="silver-text">{hero.title.split(' ').slice(0, -1).join(' ')} </span>
@@ -55,9 +52,18 @@ export default function Home() {
               <Link to={hero.link} className="btn-ghost px-7 py-3.5 rounded-full inline-flex items-center gap-2">{hero.cta} <ChevronRight className="w-4 h-4" /></Link>
             </div>
           </div>
+
+          {/* Full photo, uncropped — object-contain guarantees nothing gets cut off */}
+          <div className="animate-fade-up relative rounded-3xl overflow-hidden border border-yellow-500/25 bg-neutral-950 shadow-[0_25px_70px_rgba(245,197,24,0.15)]">
+            <img
+              src={heroCar}
+              alt="Range Rover receiving Paint Protection Film at Universal Car Detailing Studio"
+              className="w-full h-auto max-h-[75vh] object-contain mx-auto"
+            />
+          </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-500 text-[10px] tracking-[0.4em] uppercase animate-pulse">Scroll to explore</div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-500 text-[10px] tracking-[0.4em] uppercase animate-pulse hidden lg:block">Scroll to explore</div>
       </section>
 
       {/* STATS */}
@@ -122,8 +128,8 @@ export default function Home() {
             <h2 className="font-display text-4xl md:text-6xl leading-tight"><span className="silver-text">The Proof is </span><span className="gold-text">in the Finish.</span></h2>
             <p className="text-neutral-400 mt-5">Drag the slider to see the difference walking into our studio versus driving out — every panel, every edge, done with obsessive precision.</p>
           </div>
-          <div className="reveal">
-            <BeforeAfter before={beforeAfter.before} after={beforeAfter.after} />
+          <div className="reveal max-w-md mx-auto">
+            <BeforeAfter before={beforeAfter.before} after={beforeAfter.after} aspectClass="aspect-[1024/1178]" />
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { ChevronsLeftRight } from 'lucide-react';
 
-export default function BeforeAfter({ before, after, beforeLabel = 'BEFORE', afterLabel = 'AFTER' }) {
+export default function BeforeAfter({ before, after, beforeLabel = 'BEFORE', afterLabel = 'AFTER', aspectClass = 'aspect-[16/10]' }) {
   const [pos, setPos] = useState(50);
   const [dragging, setDragging] = useState(false);
   const containerRef = useRef(null);
@@ -43,7 +43,7 @@ export default function BeforeAfter({ before, after, beforeLabel = 'BEFORE', aft
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden border border-yellow-500/25 bg-black select-none cursor-ew-resize shadow-[0_25px_60px_rgba(245,197,24,0.15)]"
+      className={`relative w-full ${aspectClass} rounded-3xl overflow-hidden border border-yellow-500/25 bg-black select-none cursor-ew-resize shadow-[0_25px_60px_rgba(245,197,24,0.15)]`}
       onMouseDown={startDrag}
       onTouchStart={startDrag}
     >
