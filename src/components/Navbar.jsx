@@ -87,9 +87,9 @@ export default function Navbar() {
             </button>
 
             <div
-              className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
+              className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-[60] transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
             >
-              <div className="rounded-2xl border border-yellow-500/20 bg-neutral-950/98 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden">
+              <div className="rounded-2xl border border-yellow-500/20 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden" style={{ backgroundColor: '#0a0a0a' }}>
                 <Link to="/services" className="flex items-center justify-between px-5 py-3 text-xs tracking-[0.2em] text-yellow-500 border-b border-yellow-500/10 hover:bg-yellow-500/5 transition">
                   ALL SERVICES <ChevronDown className="w-3.5 h-3.5 -rotate-90" />
                 </Link>
